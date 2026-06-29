@@ -75,13 +75,7 @@ The final ensemble model is a **Dynamic Expert Bridge (Top-9 Bridge)** with a so
 
 To perform the ensemble:
 1. A Random Forest meta-model (400 trees) was trained for each expert to predict that expert's expected absolute error for each state-week.
-2. Predicted errors were converted into weights using inverse-error weighting:
-
-   $$
-   w_{i} = \frac{\exp(-\hat{e}_{i} / \tau)}{\sum_{j} \exp(-\hat{e}_{j} / \tau)}
-   $$
-
-   with temperature $\tau = 0.4$.
+2. Predicted errors were converted into weights using inverse-error weighting with a softmax temperature parameter of 0.4.
 
 The GNN-LSTM training code is outline-configured in `src/models.py`, the Bayesian Thermal model in `src/bayesian/bayesian_nb_glmm.py`, and the R dynamic bridge ensemble execution in `src/dengue_dynamic_expert_ensemble.R`, `src/add_external_experts_top3_bridge.R`, and `src/create_final_top9_temp04_outputs.R`.
 
