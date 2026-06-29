@@ -76,8 +76,10 @@ The final ensemble model is a **Dynamic Expert Bridge (Top-9 Bridge)** with a so
 To perform the ensemble:
 1. A Random Forest meta-model (400 trees) was trained for each expert to predict that expert's expected absolute error for each state-week.
 2. Predicted errors were converted into weights using inverse-error weighting:
-   $$w_{i} = \frac{\exp(-\hat{e}_{i} / \tau)}{\sum_{j} \exp(-\hat{e}_{j} / \tau)}$$
-   with temperature $\tau = 0.4$.
+$$
+w_{i} = \frac{\exp(-\hat{e}_{i} / \tau)}{\sum_{j} \exp(-\hat{e}_{j} / \tau)}
+$$
+with temperature $\tau = 0.4$.
 
 The GNN-LSTM training code is outline-configured in `src/models.py`, the Bayesian Thermal model in `src/bayesian/bayesian_nb_glmm.py`, and the R dynamic bridge ensemble execution in `src/dengue_dynamic_expert_ensemble.R`, `src/add_external_experts_top3_bridge.R`, and `src/create_final_top9_temp04_outputs.R`.
 
@@ -106,13 +108,4 @@ All experts generated quantile predictions or full predictive distributions. The
 
 ## References
 
-@article{mordecai2017detecting,
-  title={Detecting the impact of temperature on transmission of Zika, dengue, and chikungunya using mechanistic models},
-  author={Mordecai, Erin A and Cohen, Jeremy M and Evans, Michelle V and Gudio, Rebecca and Johnson, Leah R and Lippi, Catherine A and Miazgowicz, Kerri and Neira, Marco and Rohr, Jason R and Ryan, Sadie J and others},
-  journal={PLoS neglected tropical diseases},
-  volume={11},
-  number={4},
-  pages={e0005568},
-  year={2017},
-  publisher={Public Library of Science San Francisco, CA USA}
-}
+Mordecai, E.A. et al. (2017) 'Detecting the impact of temperature on transmission of Zika, dengue, and chikungunya using mechanistic models', *PLOS Neglected Tropical Diseases*, 11(4), p. e0005568. doi: 10.1371/journal.pntd.0005568.
