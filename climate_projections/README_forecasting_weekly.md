@@ -17,7 +17,7 @@ This dataset disaggregates the provided monthly forecasts (`data/data_imdc_2026/
 
 | Column | Type | Description |
 |:---|:---|:---|
-| `round` | Categorical | The validation or forecast round ID (e.g. `round_1`, `round_5_forecast_2026_2027`). |
+| `round` | Categorical | The validation round ID (e.g. `round_1`, `round_4`). |
 | `reference_month` | Date (YYYY-MM-DD) | The month the forecast was issued (reference start date). |
 | `forecast_months_ahead` | Integer | The monthly lead time (1 to 6 months ahead). |
 | `geocode` | Integer | IBGE municipality administrative code (7 digits). Excludes state `ES`. |
@@ -44,8 +44,7 @@ The disaggregation is performed by mapping monthly forecasts to weekly Sunday da
 *   **`round_1`**: reference month `2022-06-01`, targets: July 2022 to December 2022.
 *   **`round_2`**: reference month `2023-06-01`, targets: July 2023 to December 2023.
 *   **`round_3`**: reference month `2024-06-01`, targets: July 2024 to December 2024.
-*   **`round_4`**: reference month `2025-06-01`, targets: July 2025 to December 2025.
-*   **`round_5_forecast_2026_2027`**: reference month `2026-03-01`, targets: April 2026 to September 2026.
+*   `round_4`: reference month `2025-06-01`, targets: July 2025 to December 2025.
 
 ---
 

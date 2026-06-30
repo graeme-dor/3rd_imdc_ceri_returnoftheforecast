@@ -2,7 +2,7 @@
 
 This directory contains the code and generated dataset for weekly delta-adjusted forecasts: **`forecasting_climate_delta_adjusted_weekly.csv`**.
 
-This dataset provides municipal-level weekly forecasts for the target periods of all 5 validation/forecast rounds, starting from the week immediately following each round's training cutoff date. Inside the 6-month forecast window, weekly climatological normals are shifted by the Copernicus forecast anomalies (deltas) relative to monthly observed normals. Beyond the 6-month window (or for weeks falling in the reference month where Copernicus has no forecast), it falls back to standard weekly normals.
+This dataset provides municipal-level weekly forecasts for the target periods of all 4 validation rounds, starting from the week immediately following each round's training cutoff date. Inside the 6-month forecast window, weekly climatological normals are shifted by the Copernicus forecast anomalies (deltas) relative to monthly observed normals. Beyond the 6-month window (or for weeks falling in the reference month where Copernicus has no forecast), it falls back to standard weekly normals.
 
 ---
 
@@ -17,7 +17,7 @@ This dataset provides municipal-level weekly forecasts for the target periods of
 
 | Column | Type | Description |
 |:---|:---|:---|
-| `round` | Categorical | The validation or forecast round ID (e.g. `round_1`, `round_5_forecast_2026_2027`). |
+| `round` | Categorical | The validation round ID (e.g. `round_1`, `round_4`). |
 | `geocode` | Integer | IBGE municipality administrative code (7 digits). Excludes state `ES`. |
 | `date` | Date (YYYY-MM-DD) | Weekly Sunday representing the epidemiological week end. |
 | `week` | Integer | Calendar week of the year (1 to 53). |

@@ -71,13 +71,7 @@ def generate_municipal_forecasts():
             'name': 'round_4',
             'cutoff': '2025-06-15',
             'target_start': '2025-06-22',
-            'target_end': '2026-03-08'
-        },
-        {
-            'name': 'round_5_forecast_2026_2027',
-            'cutoff': '2026-03-08',
-            'target_start': '2026-03-15',
-            'target_end': '2027-10-03'
+            'target_end': '2026-10-04'
         }
     ]
     

@@ -32,8 +32,7 @@ def disaggregate_forecasts_causal():
         {'name': 'round_1', 'ref_month': '2022-06-01'},
         {'name': 'round_2', 'ref_month': '2023-06-01'},
         {'name': 'round_3', 'ref_month': '2024-06-01'},
-        {'name': 'round_4', 'ref_month': '2025-06-01'},
-        {'name': 'round_5_forecast_2026_2027', 'ref_month': '2026-03-01'}
+        {'name': 'round_4', 'ref_month': '2025-06-01'}
     ]
     
     # Helpers

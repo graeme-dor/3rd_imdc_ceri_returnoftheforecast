@@ -2,7 +2,7 @@
 
 This directory contains the code and the generated baseline forecast dataset at the municipal level: **`forecasting_climate_normals_weekly.csv`**.
 
-This dataset contains the weekly climatological normals computed causally for each validation and forecast round, restricted to the weeks extending beyond each round's training cutoff date.
+This dataset contains the weekly climatological normals computed causally for each of the 4 validation rounds, restricted to the weeks extending beyond each round's training cutoff date.
 
 ---
 
@@ -48,8 +48,7 @@ Where $x_{g, y, w}$ is the observed climate value for municipality $g$, year $y$
 | `round_1` | `2022-06-19` | `2022-06-26` | `2023-10-01` | 67 |
 | `round_2` | `2023-06-18` | `2023-06-25` | `2024-09-29` | 67 |
 | `round_3` | `2024-06-16` | `2024-06-23` | `2025-09-28` | 67 |
-| `round_4` | `2025-06-15` | `2025-06-22` | `2026-03-08` | 38 |
-| `round_5_forecast_2026_2027` | `2026-03-08` | `2026-03-15` | `2027-10-03` | 82 |
+| `round_4` | `2025-06-15` | `2025-06-22` | `2026-10-04` | 67 |
 
 ---
 

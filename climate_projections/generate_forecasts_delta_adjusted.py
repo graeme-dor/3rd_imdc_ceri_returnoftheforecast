@@ -71,16 +71,8 @@ def generate_delta_adjusted():
             'cutoff': '2025-06-15',
             'ref_month': '2025-06-01',
             'target_start': '2025-06-22',
-            'target_end': '2026-03-08',
-            'fc_end_date': '2025-12-31'  # 6 months after June 2025 reference month
-        },
-        {
-            'name': 'round_5_forecast_2026_2027',
-            'cutoff': '2026-03-08',
-            'ref_month': '2026-03-01',
-            'target_start': '2026-03-15',
-            'target_end': '2027-10-03',
-            'fc_end_date': '2026-09-30'  # 6 months after March 2026 reference month
+            'target_end': '2026-10-04',
+            'fc_end_date': '2025-12-31'
         }
     ]
     
