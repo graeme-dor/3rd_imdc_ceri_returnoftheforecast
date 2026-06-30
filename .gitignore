@@ -11,3 +11,13 @@ __pycache__/
 venv/
 env/
 .env
+
+# Large datasets and project files
+data/processed/*
+!data/processed/.gitkeep
+data/data_imdc_2026/
+climate_projections/*.csv
+*.csv.gz
+*.zip
+*.docx
+*.zip
