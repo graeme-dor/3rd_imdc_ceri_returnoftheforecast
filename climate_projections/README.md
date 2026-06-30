@@ -40,47 +40,54 @@ This dataset provides municipal-level weekly forecasts for the target periods of
 For each validation round:
 
 ### A. Inside the 6-Month Forecast Window (Target dates $\le$ Cutoff + 6 months, excluding reference month)
+
 1. We compute the historical monthly observed normal for each geocode and calendar month $M \in \{1..12\}$ using only data $\le$ cutoff.
 2. For each lead forecast month $M$, we compute the monthly forecast anomaly (delta or ratio) on the primary monthly forecast variables:
-   $$
-   \begin{aligned}
-   \Delta_{\text{temp}} &= \text{Forecast}_{\text{temp, med}} - \text{Normal}_{\text{temp, med}} \\
-   \Delta_{\text{humid}} &= \text{Forecast}_{\text{humidity, med}} - \text{Normal}_{\text{humidity, med}} \\
-   \text{Ratio}_{\text{precip}} &= \min\left(3.0, \frac{\text{Forecast}_{\text{precipitation, total}}}{\max(1.0, \text{Normal}_{\text{precipitation, med}})}\right)
-   \end{aligned}
-   $$
+
+$$
+\begin{aligned}
+\Delta_{\text{temp}} &= \text{Forecast}_{\text{temp, med}} - \text{Normal}_{\text{temp, med}} \\
+\Delta_{\text{humid}} &= \text{Forecast}_{\text{humidity, med}} - \text{Normal}_{\text{humidity, med}} \\
+\text{Ratio}_{\text{precip}} &= \min\left(3.0, \frac{\text{Forecast}_{\text{precipitation, total}}}{\max(1.0, \text{Normal}_{\text{precipitation, med}})}\right)
+\end{aligned}
+$$
+
 3. We adjust the weekly climatological normals ($w$) for target weeks falling inside month $M$:
-   * **Temperature**:
-     $$
-     \begin{aligned}
-     \hat{w}_{\text{temp, min}} &= w_{\text{temp, min}} + \Delta_{\text{temp}} \\
-     \hat{w}_{\text{temp, med}} &= w_{\text{temp, med}} + \Delta_{\text{temp}} \\
-     \hat{w}_{\text{temp, max}} &= w_{\text{temp, max}} + \Delta_{\text{temp}}
-     \end{aligned}
-     $$
-   * **Relative Humidity** (clipped to $[0.0, 100.0]$):
-     $$
-     \begin{aligned}
-     \hat{w}_{\text{humid, min}} &= \max\left(0.0, \min\left(100.0, w_{\text{humid, min}} + \Delta_{\text{humid}}\right)\right) \\
-     \hat{w}_{\text{humid, med}} &= \max\left(0.0, \min\left(100.0, w_{\text{humid, med}} + \Delta_{\text{humid}}\right)\right) \\
-     \hat{w}_{\text{humid, max}} &= \max\left(0.0, \min\left(100.0, w_{\text{humid, max}} + \Delta_{\text{humid}}\right)\right)
-     \end{aligned}
-     $$
-   * **Precipitation** (multiplicative scaling):
-     $$
-     \begin{aligned}
-     \hat{w}_{\text{precip, min}} &= w_{\text{precip, min}} \times \text{Ratio}_{\text{precip}} \\
-     \hat{w}_{\text{precip, med}} &= w_{\text{precip, med}} \times \text{Ratio}_{\text{precip}} \\
-     \hat{w}_{\text{precip, max}} &= w_{\text{precip, max}} \times \text{Ratio}_{\text{precip}}
-     \end{aligned}
-     $$
-   * **Thermal Range & Rainy Days**:
-     $$
-     \begin{aligned}
-     \hat{w}_{\text{thermal range}} &= w_{\text{thermal range}} \\
-     \hat{w}_{\text{rainy days}} &= w_{\text{rainy days}}
-     \end{aligned}
-     $$
+
+#### Temperature Adjustment
+$$
+\begin{aligned}
+\hat{w}_{\text{temp, min}} &= w_{\text{temp, min}} + \Delta_{\text{temp}} \\
+\hat{w}_{\text{temp, med}} &= w_{\text{temp, med}} + \Delta_{\text{temp}} \\
+\hat{w}_{\text{temp, max}} &= w_{\text{temp, max}} + \Delta_{\text{temp}}
+\end{aligned}
+$$
+
+#### Relative Humidity Adjustment (clipped to $[0.0, 100.0]$)
+$$
+\begin{aligned}
+\hat{w}_{\text{humid, min}} &= \max\left(0.0, \min\left(100.0, w_{\text{humid, min}} + \Delta_{\text{humid}}\right)\right) \\
+\hat{w}_{\text{humid, med}} &= \max\left(0.0, \min\left(100.0, w_{\text{humid, med}} + \Delta_{\text{humid}}\right)\right) \\
+\hat{w}_{\text{humid, max}} &= \max\left(0.0, \min\left(100.0, w_{\text{humid, max}} + \Delta_{\text{humid}}\right)\right)
+\end{aligned}
+$$
+
+#### Precipitation Adjustment (multiplicative scaling)
+$$
+\begin{aligned}
+\hat{w}_{\text{precip, min}} &= w_{\text{precip, min}} \times \text{Ratio}_{\text{precip}} \\
+\hat{w}_{\text{precip, med}} &= w_{\text{precip, med}} \times \text{Ratio}_{\text{precip}} \\
+\hat{w}_{\text{precip, max}} &= w_{\text{precip, max}} \times \text{Ratio}_{\text{precip}}
+\end{aligned}
+$$
+
+#### Thermal Range & Rainy Days
+$$
+\begin{aligned}
+\hat{w}_{\text{thermal range}} &= w_{\text{thermal range}} \\
+\hat{w}_{\text{rainy days}} &= w_{\text{rainy days}}
+\end{aligned}
+$$
 
 ### B. Outside the 6-Month Forecast Window OR Reference Month (Target dates $>$ Cutoff + 6 months, or within reference month)
 1. The forecast falls back to the standard weekly climatological normals: $\hat{w} = w$
